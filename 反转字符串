@@ -1,0 +1,13 @@
+class Solution {
+    public char[] help(char[] s,int left,int right){
+        if(left>=right){return s;}
+        char te=s[left];
+        s[left]=s[right];
+        s[right]=te;
+        help(s,left+1,right-1);
+        return s;
+    }
+    public void reverseString(char[] s) {
+        s=help(s,0,s.length-1);
+    }
+}
