@@ -1,0 +1,22 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        ListNode bef=null;
+        ListNode no=head;
+        while(no!=null){
+            ListNode temp=no.next;
+            no.next=bef;
+            bef=no;
+            no=temp;
+        };
+        return bef;
+    }
+}
