@@ -1,0 +1,10 @@
+class Solution {
+    public int titleToNumber(String s) {
+        int i=0;
+        char[] c=s.toCharArray();
+        for (int a=0;a<c.length;a++){
+            i=i*26+(c[a]-64);
+        }
+        return i;
+    }
+}
