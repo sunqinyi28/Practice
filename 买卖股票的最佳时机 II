@@ -1,0 +1,28 @@
+   /* public int maxProfit(int[] prices) {//最简单算法
+        int max=0;
+        for(int i=0;i<prices.length-1;i++){
+            if(prices[i+1]>prices[i]){
+                max+=prices[i+1]-prices[i];
+            }
+        }
+        return max;
+    }*/
+ public static int maxProfit(int[] prices) {//峰谷算法
+        int low=0;
+        int max=0;
+        for(int i=0;i<prices.length-1;i++){
+            if((prices[i+1]<prices[i])){
+                if(prices[i]>prices[low]){
+                    max+=(prices[i]-prices[low]);
+                }
+                low=i+1;
+            }
+        }
+        if (prices[prices.length-1]>prices[low]){
+            max+=prices[prices.length-1]-prices[low];
+        }
+        if(low==0){
+            max=prices[prices.length-1]-prices[0];
+        }
+        return max;
+    }
