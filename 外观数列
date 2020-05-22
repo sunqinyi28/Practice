@@ -1,0 +1,46 @@
+class Solution {
+ /*public static String countAndSay(int n) {//字符串拼接
+        if(n==1){
+            return "1";
+        }
+        String s="";
+        int head = 0;
+        int now = 1;
+        String a=countAndSay(n-1);
+        for(;now<a.length();now++){
+            if(a.charAt(now)!=a.charAt(head)){
+                s+=(now-head+"");
+                s+=(a.charAt(head));
+                head=now;
+            }
+        }
+        if(head!=now){
+            int x=now-head;
+            s+=(x+"");
+            s+=(a.charAt(head));
+        }
+        return s;
+    }*/
+public static String countAndSay(int n) {//StringBuilder方式，提高效率
+        if(n==1){
+            return "1";
+        }
+        StringBuilder s=new StringBuilder();
+        int head = 0;
+        int now = 1;
+        String a=countAndSay(n-1);
+        for(;now<a.length();now++){
+            if(a.charAt(now)!=a.charAt(head)){
+                s.append(now-head+"");
+                s.append(a.charAt(head));
+                head=now;
+            }
+        }
+        if(head!=now){
+            int x=now-head;
+            s.append(x+"");
+            s.append(a.charAt(head));
+        }
+        return s.toString();
+    }
+}
