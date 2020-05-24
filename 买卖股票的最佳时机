@@ -1,0 +1,23 @@
+/*public int maxProfit(int[] prices) {//双层循环
+        int max=0;
+        for(int i=0;i<prices.length-1;i++){
+            for(int a=i+1;a<prices.length;a++){
+                if(prices[a]>prices[i]&&prices[a]-prices[i]>max){
+                    max=prices[a]-prices[i];
+                }
+            }
+        }
+        return max;
+    }*/
+        public int maxProfit(int[] prices) {//比较方法
+            if(prices.length<=1){
+                return 0;
+            }
+            int max=0;
+            int min=prices[0];
+            for(int i=0;i<prices.length;i++){
+                max=Math.max(max,prices[i]-min);
+                min=Math.min(min,prices[i]);
+            }
+            return max;
+    }
