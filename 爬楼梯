@@ -1,0 +1,23 @@
+  /*  public int climbStairs(int n) {//理论解法
+        if(n==1){
+            return 1;
+        }
+        if(n==2){
+            return 2;
+        }
+        return climbStairs(n-1)+climbStairs(n-2);
+    }*/
+    public int climbStairs(int n) {//时间更短
+        if(n<=2){
+            return n;
+        }
+        int i1=1;
+        int i2=2;
+        int i3=0;
+        for(int i=0;i<n-2;i++){
+            i3=i1+i2;
+            i1=i2;
+            i2=i3;
+        }
+        return i3;
+    }
