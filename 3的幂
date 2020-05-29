@@ -1,0 +1,13 @@
+    public boolean isPowerOfThree(int n) {
+        if(n==1){
+            return true;
+        }
+        int co=3;
+        while(co<=1162261467){
+            if(co==n){
+                return true;
+            }
+            co=co*3;
+        }
+        return false;
+    }
