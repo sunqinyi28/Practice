@@ -1,0 +1,21 @@
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        int now=m-1;
+        int j=0;
+        for(int i=0;i<=now&&j<n;){
+            if(nums2[j]<=nums1[i]){
+                for(int a=now;a>=i;a--){
+                    nums1[a+1]=nums1[a];
+                }
+                now++;
+                nums1[i]=nums2[j];
+                j++;
+            }else{
+                i++;
+            }
+        }
+        while(j<n){
+            nums1[now+1]=nums2[j];
+            now++;
+            j++;
+        }
+    }
