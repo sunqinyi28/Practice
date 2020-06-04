@@ -1,0 +1,17 @@
+    public int reverse(int x) {
+        //2^31-1=2147483647,-2^31=-2147483648
+        int a=Math.abs(x);
+        int n=0;
+        while(a>0){
+            if(n>214748364.7){
+                return 0;
+            }
+            n*=10;
+            n+=a%10;
+            a=(int)a/10;
+        }
+        if(x<0){
+            return -n;
+        }
+        return n;
+    }
