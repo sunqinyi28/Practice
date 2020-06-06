@@ -1,0 +1,13 @@
+    public List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> list0=new ArrayList<>();
+        list0.add(new ArrayList<Integer>());
+        for(int i:nums){
+            int c=list0.size();
+            for(int j=0;j<c;j++){
+                List<Integer> list1 = new ArrayList<Integer>(list0.get(j));
+                list1.add(i);
+                list0.add(list1);
+            }
+        }
+        return list0;
+    }
