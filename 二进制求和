@@ -1,0 +1,24 @@
+    public String addBinary(String a, String b) {
+        while(a.length()>b.length()){
+            b="0"+b;
+        }
+        while(a.length()<b.length()){
+            a="0"+a;
+        }
+        boolean plus=false;
+        String s="";
+        int i=0;
+        for(;i<a.length()&&i<b.length();i++){
+            if(!plus){
+                if(a.charAt(a.length()-1-i)=='0'&&b.charAt(b.length()-1-i)=='0') s="0"+s;
+                else if(a.charAt(a.length()-1-i)=='1'&&b.charAt(b.length()-1-i)=='1') {s="0"+s; plus=true;}
+                else s="1"+s;
+            }else if(plus){
+                if(a.charAt(a.length()-1-i)=='0'&&b.charAt(b.length()-1-i)=='0'){ s="1"+s; plus=false;}
+                else if(a.charAt(a.length()-1-i)=='1'&&b.charAt(b.length()-1-i)=='1') {s="1"+s;}
+                else {s="0"+s; }
+            }
+        }
+        if(plus==true) s="1"+s;
+        return s;
+    }
