@@ -1,0 +1,18 @@
+    public List<List<String>> groupAnagrams(String[] strs) {
+        List<List<String>> list = new ArrayList<>();
+        Map<String,Integer> map=new HashMap<>();
+        int now=0;
+        for(String str:strs){
+            char[] ca = str.toCharArray();
+            Arrays.sort(ca);
+            if(map.containsKey(new String(ca))){
+                list.get(map.get(new String(ca))).add(str);
+            }else{
+                map.put(new String(ca),now);
+                list.add(new ArrayList<String>());
+                list.get(now).add(str);
+                now++;
+            }
+        }
+        return list;
+    }
