@@ -1,0 +1,11 @@
+    public int repeatedNTimes(int[] A) {
+        List<Integer> list=new ArrayList<>();
+        for(int i:A){
+            if(!list.contains(i)){
+                list.add(i);
+            }else{
+                return i;
+            }
+        }
+        return 0;
+    }
