@@ -1,0 +1,15 @@
+    public boolean canPermutePalindrome(String s) {
+        char[] cs = s.toCharArray();
+        List<Character> list=new ArrayList<>();
+        for(char c:cs){
+            if(list.contains(c)){
+                list.remove((Character)c);
+            }else{
+                list.add(c);
+            }
+        }
+        if(list.size()>1){
+            return false;
+        }
+        return true;
+    }
