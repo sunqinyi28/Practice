@@ -1,0 +1,37 @@
+    public int[] spiralOrder(int[][] matrix) {
+        if(matrix.length==0){
+            return new int[0];
+        }
+        int rows=matrix.length;
+        int cols=matrix[0].length;
+        int res=rows*cols;
+        int[] a= new int[res];
+        int row=0;
+        int col=0;
+        int t=0;
+        while(true){
+            for(int i=col;i<cols-col;i++){
+                a[t]=matrix[row][i];
+                t++;
+            }
+            if(t>=res) break;
+            for(int i=row+1;i<rows-row;i++){
+                a[t]=matrix[i][cols-col-1];
+                t++;
+            }
+            if(t>=res) break;
+            for(int i=cols-2-col;i>col;i--){
+                a[t]=matrix[rows-1-row][i];
+                t++;
+            }
+            if(t>res) break;
+            for(int i=rows-1-row;i>row;i--){
+                a[t]=matrix[i][col];
+                t++;
+            }
+            if(t>=res) break;
+            col++;
+            row++;
+        }
+        return a;
+    }
