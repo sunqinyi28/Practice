@@ -1,0 +1,28 @@
+    public int[] kWeakestRows(int[][] mat, int k) {
+        int rows=mat.length;
+        int cols=mat[0].length;
+        int[] res=new int[rows];
+        for(int i=0;i<rows;i++){
+            int num=0;
+            for(int j=0;j<cols;j++){
+                num+=mat[i][j];
+            }
+            res[i]=num;
+        }
+        List<Integer> list=new ArrayList<>();
+        int[] res1=res.clone();
+        Arrays.sort(res1);
+        for(int i=0;i<k;i++){
+            for(int j=0;j<res.length;j++){
+                if(res[j]==res1[i]&&!list.contains(j)){
+                    list.add(j);
+                    break;
+                }
+            }
+        }
+        int[] result=new int[k];
+        for(int i=0;i<k;i++){
+            result[i]=list.get(i);
+        }
+        return result;
+    }
