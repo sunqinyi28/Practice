@@ -1,0 +1,11 @@
+    public int subtractProductAndSum(int n) {
+        int sum1=1;
+        int sum=0;
+        while(n>0){
+            int i=n%10;
+            n/=10;
+            sum1=sum1*i;
+            sum=sum+i;
+        }
+        return sum1-sum;
+    }
