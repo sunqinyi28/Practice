@@ -1,0 +1,15 @@
+    public boolean findNumberIn2DArray(int[][] matrix, int target) {
+        if (matrix == null || matrix.length == 0) return false;
+        int rows=matrix.length;
+        int cols=matrix[0].length;
+        if(target<matrix[0][0])return false;
+        if(target>matrix[rows-1][cols-1])return false;
+        int i=0;
+        int j=cols-1;
+        while(i>=0&&j<cols&&i<rows&&j>=0){
+            if(target>matrix[i][j]) i++;
+            else if(target<matrix[i][j]) j--;
+            else return true;
+        }
+        return false;
+    }
