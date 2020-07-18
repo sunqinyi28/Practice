@@ -1,0 +1,18 @@
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+        if(preorder == null || inorder == null) return null;
+        if(preorder.length != inorder.length) return null;
+        return help(preorder,inorder,0,inorder.length-1,0,preorder.length-1);
+    }
+    public TreeNode help(int[] preorder, int[] inorder,int istart,int iend,int pstart,int pend){
+        if(pstart>pend||istart>iend) return null;
+        TreeNode tree=new TreeNode(preorder[pstart]);
+        int lleft=0;
+        int i=istart;
+        while(inorder[i]!=tree.val){
+            i++;
+            lleft++;
+        }
+        tree.left=help(preorder,inorder,istart,istart+lleft-1,pstart+1,pstart+lleft);
+        tree.right=help(preorder,inorder,istart+lleft+1,iend,pstart+lleft+1,pend);
+        return tree;
+    }
