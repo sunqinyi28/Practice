@@ -1,0 +1,13 @@
+    public String replaceSpace(String s) {
+      /*  String res="";
+        char[] ss=s.toCharArray();
+        for(int i=0;i<ss.length;i++){
+            if(ss[i]==' '){
+                res+="%20";
+            }else{
+                res+=ss[i];
+            }
+        }
+        return res;*/
+        return s.replace(" ","%20");
+    }
