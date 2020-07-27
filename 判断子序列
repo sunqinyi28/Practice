@@ -1,0 +1,19 @@
+    public boolean isSubsequence(String s, String t) {
+        char[] ss=s.toCharArray();
+        char[] tt=t.toCharArray();
+        int len=tt.length;
+        int index=0;
+        int now=0;
+        int num=ss.length;
+        while(index<tt.length&&num>0){
+            if(tt[index]==ss[now]){
+                now++;
+                num--;
+            }
+            index++;
+        }
+        if(num==0){
+            return true;
+        }
+        return false;
+    }
