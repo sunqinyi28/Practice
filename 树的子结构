@@ -1,0 +1,43 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public boolean isSubStructure(TreeNode A, TreeNode B) {
+        if(B == null) return false;
+        return help(A,B);
+    }
+    public boolean help(TreeNode A, TreeNode B){
+        if(B==null) {
+			return false;
+		}
+        if(A==null) {
+			return false;
+		}
+        if(A.val==B.val){
+            boolean flag= isqual(A,B);
+            if(flag){return true;}
+            return help(A.left,B)||help(A.right,B);
+        }else{
+            return help(A.left,B)||help(A.right,B);
+        }
+
+    }
+     public boolean isqual(TreeNode A, TreeNode B){
+        if(B==null) {
+			return true;
+		}
+        if(A==null) {
+			return false;
+		}
+        if(A.val!=B.val){
+            return false;
+        }
+        return isqual(A.left,B.left)&&isqual(A.right,B.right);
+     }
+}
