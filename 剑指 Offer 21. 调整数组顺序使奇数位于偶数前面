@@ -1,0 +1,18 @@
+    public int[] exchange(int[] nums) {
+        int right=nums.length;
+        int left=0;
+        int[] res=new int[right];
+        int i=0;
+        right--;
+        while(right>=left&&i<nums.length){
+            if(nums[i]%2==0){
+                res[right]=nums[i];
+                right--;
+            }else{
+                res[left]=nums[i];
+                left++;
+            }
+            i++;
+        }
+        return res;
+    }
