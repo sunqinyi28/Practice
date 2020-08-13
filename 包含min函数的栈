@@ -1,0 +1,49 @@
+class MinStack {
+    /** initialize your data structure here. */
+    private int minIndex;//最小位置
+    private List<Integer> history;//最小历史
+    private List<Integer> list;//存储
+    public MinStack() {
+        minIndex = 0;
+    }
+    public void push(int x) {
+        if(list == null){
+            list = new ArrayList<Integer>();
+            history = new ArrayList<Integer>();
+            list.add(x);
+            history.add(0);
+        }else{
+            list.add(x);
+            if(x <= list.get(minIndex)){
+                history.add(minIndex);
+                minIndex = list.size()-1;
+            }
+        }
+    }
+    
+    public void pop() {
+        if(minIndex == list.size()-1){
+            minIndex = history.get(history.size() - 1);
+            history.remove(history.size() - 1);
+        }
+        list.remove(list.size()-1);
+    }
+    
+    public int top() {
+        if(list == null) return 0;
+        return list.get(list.size() - 1);
+    }
+    
+    public int min() {
+        return list.get(minIndex);
+    }
+}
+
+/**
+ * Your MinStack object will be instantiated and called as such:
+ * MinStack obj = new MinStack();
+ * obj.push(x);
+ * obj.pop();
+ * int param_3 = obj.top();
+ * int param_4 = obj.min();
+ */
