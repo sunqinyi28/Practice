@@ -1,0 +1,9 @@
+    public int rangeBitwiseAnd(int m, int n) {
+        if(m == n)return m;
+        int i = (int) Math.floor(Math.log((double)n)/Math.log(2.00));
+        if(m < Math.pow(2,i)) return 0;
+        while(n > m){
+            n &= (n - 1);
+        }
+        return n;
+    }
