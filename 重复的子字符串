@@ -1,0 +1,17 @@
+            for(int i=1;i<=s.length()/2;i++){
+            if(s.length()%i!=0) continue;
+            boolean flag=true;
+            for(int j=0;j<i;j++){
+                int k=j+i;
+                while(k<s.length()&&s.charAt(j)==s.charAt(k)){
+                    k+=i;
+                }
+                if(k<s.length()){
+                    flag=false;
+                    break;
+                }   
+            }
+            if(flag)
+                return true; 
+        }
+        return false;
