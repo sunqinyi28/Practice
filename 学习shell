@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# shell array usage
+
+# subscript
+city[0]=Beijing
+city[1]=Shanghai
+city[300]=Tianjin
+echo ${city[0]},${city[1]},${city[2]},${city[3]},${city[4]}
+echo ${city[-1]},${city[-2]},${city[-3]},${city[-4]}
+# echo ${city[-5]}  # error
+echo $city
+echo ${city[*]}
+echo ${city[@]}
+
+# initialization
+A=(this is an example of shell script)
+A[2]=NOT
+echo ${A[@]}
+A=([1]=an [2]=example)
+echo ${A[@]}
+A+=(of shell script)
+echo ${A[@]}
+
+# unset
+foo=(a b c d e f); echo ${foo[@]}
+unset foo; echo ${foo[@]}
+foo=(a b c d e f); echo ${foo[@]}
+unset foo[2]; echo ${foo[@]}
+foo[3]=; echo ${foo[@]}
+
