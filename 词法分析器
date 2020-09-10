@@ -1,0 +1,138 @@
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Set;
+
+public class test {
+    static String[] words ={"abstract", "boolean", "break", "byte","case", "char", "class", "continue", "default", "do","double", "else", "extends", "final", "finally", "float", "for","if", "implements", "import", "int", "long", "native", "new", "package", "private", "protected", "public", "return", "short", "static", "super", "switch", "this", "throw","throws", "transient", "try","void","while","enum","goto","const"};
+    static String[] operators = {"+" , "-" , "*" , "/" , "=" , "==" , "!=" , ">" , "<"};
+    static String[] delimits = {"(" , ")" , "[" , "]" , "{" , "}" , ";" , "," , "."};
+    static String[][] result = new String[99999][3];
+    static Map<String,Integer> map = new LinkedHashMap<>();
+    public static void  build(){//建立单词表Map
+        for (int i = 0; i < words.length; i++) {
+            map.put(words[i],100+i);
+        }
+        for (int i = 0; i < operators.length; i++) {
+            map.put(operators[i],200 + i);
+        }
+        for (int i = 0; i < delimits.length; i++) {
+            map.put(delimits[i],300 + i);
+        }
+        System.out.println("-------------单词表-------------");
+        Set<String> strings = map.keySet();
+        for (String s : strings) {
+            System.out.print(s+":");
+            System.out.println(map.get(s));
+        }
+        System.out.println("-------------单词表-------------");
+    }
+
+    public static String txttoString(File file){//读取文件
+        String result = "";
+        try{
+            BufferedReader br = new BufferedReader(new FileReader(file));//构造一个BufferedReader类来读取文件
+            String s = null;
+            while((s = br.readLine())!=null){//使用readLine方法，一次读一行
+                result = result + "\n" +s;
+            }
+            br.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public static void read(char[] chars){
+        String str = "";
+        int now = 0;
+        for (int i = 0; i < chars.length; i++) {
+            str = "";
+            if(Character.isLetter(chars[i])){
+                while(Character.isLetter(chars[i]) || Character.isDigit(chars[i]) || chars[i] == '_'){
+                    str += chars[i];
+                    i++;
+                }
+                result[now][0] = str;
+                if(map.containsKey(str)){
+                    result[now][1] = "保留字";
+                    result[now][2] = map.get(str)+"";
+                }else {
+                    result[now][1] = "标识符";
+                }
+                now++;
+                continue;
+            }
+            switch (chars[i]){//{"+" , "-" , "*" , "/" , "=" , "==" , "!=" , ">" , "<"}
+                case '!':
+                case '=':
+                    if(chars[i+1] == '='){
+                        str += chars[i];
+                        i++;
+                    }
+                case '+':
+                case '-':
+                case '*':
+                case '/':
+                case '>':
+                case '<':
+                str += chars[i];
+                result[now][0] = str;
+                result[now][1] = "运算符";
+                result[now][2] = map.get(str)+"";
+                now++;
+                continue;
+            }
+            switch (chars[i]){//{"(" , ")" , "[" , "]" , "{" , "}" , ";" , ","};
+                case '[':
+                case ']':
+                case '(':
+                case ')':
+                case '{':
+                case '}':
+                case ',':
+                case ';':
+                case '.':
+                    str += chars[i];
+                    result[now][0] = str;
+                    result[now][1] = "分隔符";
+                    result[now][2] = map.get(str)+"";
+                    now++;
+                    continue;
+            }
+            if (Character.isDigit(chars[i])){
+                boolean flag = true;
+                while(Character.isDigit(chars[i])){
+                    str += chars[i];
+                    i++;
+                }
+                result[now][0] = str;
+                result[now][1] = "数字";
+                now++;
+                continue;
+            }
+        }
+    }
+    public static void main(String[] args) {
+        build();
+        File file = new File("C:\\Users\\a\\Desktop\\test1.txt");
+        String str = txttoString(file);
+        read(str.toCharArray());
+        for (int i = 0; i < result.length; i++) {
+            if(result[i][0] == null)break;
+            System.out.print(result[i][0]);
+            if(result[i][2] != null){
+                System.out.print("   :   ");
+                System.out.print(result[i][1]);
+                System.out.print("   :   ");
+                System.out.println(result[i][2]);
+            }else {
+                System.out.print("   :   ");
+                System.out.println(result[i][1]);
+            }
+        }
+    }
+}
+
